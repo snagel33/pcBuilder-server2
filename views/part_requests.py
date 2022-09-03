@@ -37,3 +37,10 @@ def get_single_part(id):
         if part["id"] == id:
             requested_part = part
     return requested_part
+
+def create_part(part):
+    max_id = PARTS[-1]["id"]
+    new_id = max_id + 1
+    part["id"] = new_id
+    PARTS.append(part)
+    return part

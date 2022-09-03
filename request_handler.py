@@ -2,6 +2,7 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 from urllib import response
 # from views import get_all_parts, get_single_part, get_all_builds, get_single_build
 from views import *
+import json
 
 # Here's a class. It inherits from another class.
 # For now, think of a class as a container for functions that
@@ -94,15 +95,20 @@ class HandleRequests(BaseHTTPRequestHandler):
 
 
     def do_POST(self):
-        """Handles POST requests to the server
-        """
-        # Set response code to 'Created'
         self._set_headers(201)
-
         content_len = int(self.headers.get('content-length', 0))
         post_body = self.rfile.read(content_len)
-        response = f"received post request:<br>{post_body}"
-        self.wfile.write(response.encode())
+        
+        post_body = json.loads(post_body)
+        
+        (resource, id) = self.parse_url(self.path)
+        
+        new_part = None
+        
+        if resource == "parts":
+            new_part = create_part(post_body)
+        
+        self.wfile.write(f"{new_part}".encode())
 
     # Here's a method on the class that overrides the parent's method.
     # It handles any PUT request.
