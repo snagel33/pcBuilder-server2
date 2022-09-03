@@ -30,3 +30,10 @@ PARTS = [
 
 def get_all_parts():
     return PARTS
+
+def get_single_part(id):
+    requested_part = None
+    for part in PARTS:
+        if part["id"] == id:
+            requested_part = part
+    return requested_part
