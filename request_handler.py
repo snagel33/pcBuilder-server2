@@ -78,6 +78,12 @@ class HandleRequests(BaseHTTPRequestHandler):
             else:
                 response = f"{get_all_builders()}"
                 
+        if resource == "userContents":
+            if id is not None:
+                response = f"{get_single_userContent(id)}"
+            else:
+                response = f"{get_all_userContents()}"
+                
         self.wfile.write(response.encode())
 
 
