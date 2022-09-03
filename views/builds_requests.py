@@ -28,3 +28,10 @@ def get_single_build(id):
             requested_build = build
 
     return requested_build
+
+def create_build(build):
+    max_id = BUILDS[-1]["id"]
+    new_id = max_id + 1
+    build["id"] = new_id
+    BUILDS.append(build)
+    return build

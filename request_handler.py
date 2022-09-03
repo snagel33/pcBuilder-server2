@@ -105,17 +105,22 @@ class HandleRequests(BaseHTTPRequestHandler):
         
         new_part = None
         new_userContent = None
+        new_build = None
         
         if resource == "parts":
             new_part = create_part(post_body)
             
+        self.wfile.write(f"{new_part}".encode())
+            
         if resource == "userContents":
             new_userContent = create_userContent(post_body)
         
-        self.wfile.write(f"{new_part}".encode())
-
-    # Here's a method on the class that overrides the parent's method.
-    # It handles any PUT request.
+        self.wfile.write(f"{new_userContent}".encode())
+        
+        if resource == "builds":
+            new_build = create_build(post_body)
+            
+        self.wfile.write(f"{new_build}".encode())
 
     def do_PUT(self):
         """Handles PUT requests to the server
