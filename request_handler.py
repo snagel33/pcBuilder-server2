@@ -104,9 +104,13 @@ class HandleRequests(BaseHTTPRequestHandler):
         (resource, id) = self.parse_url(self.path)
         
         new_part = None
+        new_userContent = None
         
         if resource == "parts":
             new_part = create_part(post_body)
+            
+        if resource == "userContents":
+            new_userContent = create_userContent(post_body)
         
         self.wfile.write(f"{new_part}".encode())
 

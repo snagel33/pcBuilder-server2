@@ -24,3 +24,10 @@ def get_single_userContent(id):
             requested_userContent = userContent
 
     return requested_userContent
+
+def create_userContent(userContent):
+    max_id = USERCONTENTS[-1]["id"]
+    new_id = max_id + 1
+    userContent["id"] = new_id
+    USERCONTENTS.append(userContent)
+    return userContent
