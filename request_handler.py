@@ -1,6 +1,7 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from urllib import response
-from views import get_all_parts, get_single_part, get_all_builds, get_single_build
+# from views import get_all_parts, get_single_part, get_all_builds, get_single_build
+from views import *
 
 # Here's a class. It inherits from another class.
 # For now, think of a class as a container for functions that
@@ -64,6 +65,12 @@ class HandleRequests(BaseHTTPRequestHandler):
                 response = f"{get_single_build(id)}"
             else:
                 response = f"{get_all_builds()}"
+                
+        if resource == "partTypes":
+            if id is not None:
+                response = f"{get_single_partType(id)}"
+            else:
+                response = f"{get_all_partTypes()}"
                 
         self.wfile.write(response.encode())
 
