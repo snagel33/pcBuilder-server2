@@ -27,3 +27,13 @@ def get_single_buildPart(id):
             requested_buildPart = buildPart
 
     return requested_buildPart
+
+def delete_buildPart(id):
+    buildPart_index = -1
+
+    for index, buildPart in enumerate(BUILDPARTS):
+        if buildPart["id"] == id:
+            buildPart_index = index
+
+    if buildPart_index >= 0:
+        BUILDPARTS.pop(buildPart_index)

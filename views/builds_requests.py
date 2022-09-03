@@ -35,3 +35,13 @@ def create_build(build):
     build["id"] = new_id
     BUILDS.append(build)
     return build
+
+def delete_build(id):
+    build_index = -1
+
+    for index, build in enumerate(BUILDS):
+        if build["id"] == id:
+            build_index = index
+
+    if build_index >= 0:
+        BUILDS.pop(build_index)

@@ -31,3 +31,13 @@ def create_userContent(userContent):
     userContent["id"] = new_id
     USERCONTENTS.append(userContent)
     return userContent
+
+def delete_userContent(id):
+    userContent_index = -1
+
+    for index, userContent in enumerate(USERCONTENTS):
+        if userContent["id"] == id:
+            userContent_index = index
+
+    if userContent_index >= 0:
+        USERCONTENTS.pop(userContent_index)

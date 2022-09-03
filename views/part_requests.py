@@ -44,3 +44,13 @@ def create_part(part):
     part["id"] = new_id
     PARTS.append(part)
     return part
+
+def delete_part(id):
+    part_index = -1
+    
+    for index, part in enumerate(PARTS):
+        if part["id"] == id:
+            part_index = index
+            
+    if part_index >= 0:
+        PARTS.pop(part_index)

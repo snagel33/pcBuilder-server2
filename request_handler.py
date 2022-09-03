@@ -127,9 +127,26 @@ class HandleRequests(BaseHTTPRequestHandler):
         """
         self.do_POST()
 
+    def do_DELETE(self):
+        """Handles DELETE requests to the server
+        """
+        self._set_headers(204)
+        (resource, id) = self.parse_url(self.path)
+        
+        if resource == "parts":
+            delete_part(id)
+            
+        if resource == "builds":
+            delete_build(id)
+            
+        if resource == "userContents":
+            delete_userContent(id)
+            
+        if resource == "buildParts":
+            delete_buildPart(id)
+            
+        self.wfile.write("".encode())
 
-# This function is not inside the class. It is the starting
-# point of this application.
 def main():
     """Starts the server on port 8088 using the HandleRequests class
     """
