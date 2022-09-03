@@ -72,6 +72,12 @@ class HandleRequests(BaseHTTPRequestHandler):
             else:
                 response = f"{get_all_partTypes()}"
                 
+        if resource == "builders":
+            if id is not None:
+                response = f"{get_single_builder(id)}"
+            else:
+                response = f"{get_all_builders()}"
+                
         self.wfile.write(response.encode())
 
 
